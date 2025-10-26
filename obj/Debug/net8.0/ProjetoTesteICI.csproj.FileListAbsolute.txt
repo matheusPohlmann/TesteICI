@@ -156,3 +156,4 @@ C:\Users\Matheus Pohlmann\Desktop\ProjetoTesteICI\ProjetoTesteICI\obj\Debug\net8
 C:\Users\Matheus Pohlmann\Desktop\ProjetoTesteICI\ProjetoTesteICI\obj\Debug\net8.0\ProjetoTesteICI.pdb
 C:\Users\Matheus Pohlmann\Desktop\ProjetoTesteICI\ProjetoTesteICI\obj\Debug\net8.0\ProjetoTesteICI.genruntimeconfig.cache
 C:\Users\Matheus Pohlmann\Desktop\ProjetoTesteICI\ProjetoTesteICI\obj\Debug\net8.0\ref\ProjetoTesteICI.dll
+C:\Users\Matheus Pohlmann\Desktop\ProjetoTesteICI\ProjetoTesteICI\obj\Debug\net8.0\ProjetoTesteICI.sourcelink.json

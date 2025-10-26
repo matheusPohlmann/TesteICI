@@ -19,26 +19,21 @@ namespace ProjetoTesteICI.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // 🔹 Relacionamento Noticia -> Usuario (1:N)
             modelBuilder.Entity<Noticia>()
                 .HasOne(n => n.Usuario)
                 .WithMany(u => u.Noticias)
                 .HasForeignKey(n => n.UsuarioId);
 
-            // 🔹 Relacionamento NoticiaTag -> Noticia (N:1)
             modelBuilder.Entity<NoticiaTag>()
                 .HasOne(nt => nt.Noticia)
                 .WithMany(n => n.NoticiaTags)
                 .HasForeignKey(nt => nt.NoticiaId);
 
-            // 🔹 Relacionamento NoticiaTag -> Tag (N:1)
-            // ⚠️ Aqui removemos a navegação t.NoticiaTags
             modelBuilder.Entity<NoticiaTag>()
                 .HasOne(nt => nt.Tag)
-                .WithMany() // sem propriedade de navegação em Tag
+                .WithMany() 
                 .HasForeignKey(nt => nt.TagId);
 
-            // 🔹 Garante que NoticiaId + TagId não se repitam
             modelBuilder.Entity<NoticiaTag>()
                 .HasIndex(nt => new { nt.NoticiaId, nt.TagId })
                 .IsUnique();

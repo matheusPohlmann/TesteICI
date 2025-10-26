@@ -16,25 +16,21 @@ namespace ProjetoTesteICI.Controllers
             _context = context;
         }
 
-        // GET: Tag
         public async Task<IActionResult> Index()
         {
             var tags = await _context.Tags.ToListAsync();
             return View(tags);
         }
 
-        // GET: Tag/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Tag/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Descricao")] Tag tag)
         {
-            Console.WriteLine($"🟢 TAG RECEBIDA: {tag.Descricao}");
 
             if (!ModelState.IsValid)
             {
@@ -43,7 +39,7 @@ namespace ProjetoTesteICI.Controllers
                     var key = error.Key;
                     foreach (var e in error.Value.Errors)
                     {
-                        Console.WriteLine($"❌ Campo: {key} | Erro: {e.ErrorMessage}");
+                        Console.WriteLine($"Campo: {key} | Erro: {e.ErrorMessage}");
                     }
                 }
                 return View(tag);
@@ -51,11 +47,10 @@ namespace ProjetoTesteICI.Controllers
 
             _context.Add(tag);
             await _context.SaveChangesAsync();
-            Console.WriteLine("✅ Tag salva com sucesso");
+            Console.WriteLine("Tag salva com sucesso");
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Tag/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -68,7 +63,6 @@ namespace ProjetoTesteICI.Controllers
             return View(tag);
         }
 
-        // POST: Tag/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao")] Tag tag)
@@ -96,7 +90,6 @@ namespace ProjetoTesteICI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Tag/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -109,7 +102,6 @@ namespace ProjetoTesteICI.Controllers
             return View(tag);
         }
 
-        // POST: Tag/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

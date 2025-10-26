@@ -146,6 +146,26 @@ namespace ProjetoTesteICI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var noticia = await _context.Noticias
+                .Include(n => n.Usuario)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (noticia == null)
+            {
+                return NotFound();
+            }
+
+            return View(noticia);
+        }
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

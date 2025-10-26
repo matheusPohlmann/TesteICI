@@ -62,7 +62,6 @@
         $(document).ready(function () {
             var token = $('input[name="__RequestVerificationToken"]').val();
 
-            // ===== ABRIR MODAL DE CRIAÇÃO =====
             $(document).on('click', '#btnCreate', function () {
                 $.get('/Noticia/GetModal', function (html) {
                     $('#noticiaModal').replaceWith(html);
@@ -72,7 +71,6 @@
                 });
             });
 
-            // ===== ABRIR MODAL DE EDIÇÃO =====
             $(document).on('click', '.btnEdit', function () {
                 var id = $(this).data('id');
                 $.get(`/Noticia/GetModal/${id}`, function (html) {
@@ -83,7 +81,6 @@
                 });
             });
 
-            // ===== SUBMIT AJAX DO FORMULÁRIO (Create/Edit) =====
             $(document).on('submit', '#noticiaFormAjax', function (e) {
                 e.preventDefault();
 
@@ -99,7 +96,6 @@
                         'RequestVerificationToken': token
                     },
                     success: function () {
-                        // Fecha o modal e recarrega a lista
                         var modalElement = document.getElementById('noticiaModal');
                         var modal = bootstrap.Modal.getInstance(modalElement);
                         modal.hide();
