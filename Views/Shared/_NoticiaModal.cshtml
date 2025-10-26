@@ -1,0 +1,66 @@
+@model ProjetoTesteICI.ViewModels.NoticiaModalViewModel
+
+<div class="modal fade" id="noticiaModal" tabindex="-1" aria-labelledby="noticiaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            @{
+
+                bool isCreate = Model.Form.Id == 0;
+                string title = isCreate ? "Nova Notícia" : "Editar Notícia";
+            }
+
+            <form id="noticiaFormAjax" asp-action="@(isCreate ? "Create" : "Edit")" asp-controller="Noticia" method="post">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noticiaModalLabel">@title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <input type="hidden" asp-for="Form.Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Form.Titulo" class="form-label">Título</label>
+                        <input asp-for="Form.Titulo" type="text" class="form-control" />
+                        <span asp-validation-for="Form.Titulo" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Form.Texto" class="form-label">Texto</label>
+                        <textarea asp-for="Form.Texto" class="form-control" rows="5"></textarea>
+                        <span asp-validation-for="Form.Texto" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="Form.UsuarioId" class="form-label">Autor (Usuário)</label>
+                        <select asp-for="Form.UsuarioId" class="form-control" asp-items="@Model.Form.Usuarios">
+                            <option value="">-- Selecione o Autor --</option>
+                        </select>
+                        <span asp-validation-for="Form.UsuarioId" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Form.SelectedTagIds" class="form-label">Tags (Múltipla Seleção)</label>
+                        <select asp-for="Form.SelectedTagIds" class="form-control" multiple size="5" asp-items="@Model.Form.TodasTags">
+                        </select>
+                        <span asp-validation-for="Form.SelectedTagIds" class="text-danger"></span>
+                        <small class="form-text text-muted">Segure 'Ctrl' (ou 'Cmd') para selecionar múltiplas tags.</small>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<partial name="_ValidationScriptsPartial" />
