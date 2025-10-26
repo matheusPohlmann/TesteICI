@@ -1,0 +1,54 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+Debug/
+Release/
+
+# Rider
+.idea/
+
+# ASP.NET / Visual Studio Code
+.vscode/
+
+# Dotnet
+*.db
+*.dll
+*.exe
+*.pdb
+*.runtimeconfig.json
+*.deps.json
+*.staticwebassets.runtime.json
+
+# Logs
+*.log
+logs/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# EF Core Migrations
+
+
+# User-specific files
+*.local
+*.swp
+*.DS_Store
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Mac
+*.DS_Store
+
+# Node / npm (caso use)
+node_modules/
