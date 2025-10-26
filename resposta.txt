@@ -1,0 +1,13 @@
+1) No MVC, o que podemos fazer para enviar uma coleção de dados da classe Controller para a View?
+
+Pra enviar uma coleção de dados do Controller para a View, a melhor prática é usar um Model fortemente tipado. Por mais que ViewBag e ViewData funcionem, passar a coleção diretamente como parâmetro do método View() por exemplo:
+return View(lista);
+é o recomendado. Isso vai oferecer mais segurança, facilidade de manutenção e permite o uso de IntelliSense na View.
+
+2) Precisamos validar os dados obrigatórios de um formulário para que não gere exceção no momento de armazenar na fonte de dados. Como podemos fazer isso?
+
+Pra garantir a integridade dos dados e evitar erros de banco de dados, nós devemos validar o Model antes de salvar. Devemos usar Data Annotations diretamente nas propriedades dos Models pra definir as regras de validação. No Controller, devemos verificar a propriedade ModelState.IsValid antes de qualquer tentativa de salvamento. Se for inválido, o sistema deve retornar o formulário com as mensagens de erro.
+
+3) Como podemos armazenar configurações (connectionString, urls de apis, chaves de acesso) da aplicação que variam de acordo com o ambiente (debug,desenv,prod) que será publicado a aplicação?
+
+Usando appsettings.json.Devemos criar arquivos de sobreposição (dev,hml,prod,esp,etc...), o framework vai detectar o ambiente e carregar a configuração correspondente.
